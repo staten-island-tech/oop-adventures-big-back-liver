@@ -10,14 +10,16 @@ dt = 0
 
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 
+#while ame still runing
 while running:
-    # poll for events
-    # pygame.QUIT event means the user clicked X to close your window
+    
+    #put event here
     for event in pygame.event.get():
+        # pygame.QUIT event means the user clicked X to close your window
         if event.type == pygame.QUIT:
             running = False
 
-    # fill the screen with a color to wipe away anything from last frame
+    # fill background
     screen.fill("purple")
 
     pygame.draw.circle(screen, "red", player_pos, 40)
