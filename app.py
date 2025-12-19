@@ -1,12 +1,12 @@
 import pygame 
-pygame.sprite.Group()
+
+
 
 class character(pygame.sprite.Sprite):
-    def __init__(self, color, width, height):
+    def __init__(self, image, width, height):
        
        pygame.sprite.Sprite.__init__(self, )
-       self.image = pygame.Surface([width, height])
-       self.image.fill(color)
+       self.image = pygame.image.load(image)
        self.rect = self.image.get_rect()
 
 
