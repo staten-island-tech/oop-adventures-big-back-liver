@@ -1,5 +1,5 @@
 import pygame 
-
+from scrol import backgrond
 
 
 class character(pygame.sprite.Sprite):
@@ -8,16 +8,16 @@ class character(pygame.sprite.Sprite):
        pygame.sprite.Sprite.__init__(self, )
        self.image = pygame.image.load(image)
        self.image = pygame.transform.scale(self.image, (width, height))
+       self.position = self.image.get_rect()
+       print(self.position)
 
-
+bg1 = backgrond()
 
 
 pygame.init()
 time = pygame.time.Clock()
 window = pygame.display.set_mode((1280, 720))
 running = True
-bg = pygame.image.load('backgroundspookyforest.jpg').convert()
-bg = pygame.transform.scale(bg, (1280, 720))
 
 while running:
 
@@ -25,7 +25,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-    window.blit(source= bg, dest= (0,0) )
+    window.blit(source= bg1, dest= (0,0) )
     pygame.display.flip()
     time.tick(60)
 
