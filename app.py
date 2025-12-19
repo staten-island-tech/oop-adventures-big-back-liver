@@ -16,7 +16,7 @@ pygame.init()
 time = pygame.time.Clock()
 window = pygame.display.set_mode((1280, 720))
 running = True
-bg = pygame.image.load('backgroundspookyforest.jpg') 
+bg = pygame.image.load('backgroundspookyforest.jpg').convert()
 bg = pygame.transform.scale(bg, (1280, 720))
 
 while running:
