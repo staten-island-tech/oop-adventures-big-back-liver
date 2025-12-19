@@ -1,24 +1,13 @@
 import pygame 
-pygame.sprite.Group()
+
+
 
 class character(pygame.sprite.Sprite):
-    def __init__(self, color, width, height):
+    def __init__(self, image, width, height):
        
        pygame.sprite.Sprite.__init__(self, )
-       self.image = pygame.Surface([width, height])
-       self.image.fill(color)
-       self.rect = self.image.get_rect()
-
-
-
-
-
-
-
-
-
-
-
+       self.image = pygame.image.load(image)
+       self.image = pygame.transform.scale(self.image, (width, height))
 
 
 
@@ -27,7 +16,7 @@ pygame.init()
 time = pygame.time.Clock()
 window = pygame.display.set_mode((1280, 720))
 running = True
-bg = pygame.image.load('backgroundspookyforest.jpg') 
+bg = pygame.image.load('backgroundspookyforest.jpg').convert()
 bg = pygame.transform.scale(bg, (1280, 720))
 
 while running:
