@@ -7,18 +7,7 @@ class character(pygame.sprite.Sprite):
        
        pygame.sprite.Sprite.__init__(self, )
        self.image = pygame.image.load(image)
-       self.rect = self.image.get_rect()
-
-
-
-
-
-
-
-
-
-
-
+       self.image = pygame.transform.scale(self.image, (width, height))
 
 
 
