@@ -1,5 +1,5 @@
 import pygame 
-from scrol import backgrond
+from movingBackground import backgrond
 
 
 class character(pygame.sprite.Sprite):
