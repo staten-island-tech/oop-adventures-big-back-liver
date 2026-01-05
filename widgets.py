@@ -12,7 +12,7 @@ class backgound(Frame):
         self.picter = self.picter.resize(size="1500x900")
         self.config(imagex = self.picter)
 
-    def destroy(self):
+    def kys(self):
         self.destroy()
 
 
@@ -23,5 +23,16 @@ class scenebutton(Button):
 
     def __init__(self, masterx = base, textx = "Continue", color = "Grey", ifPressed = None):
         super().__init__(master= masterx, text = textx, fg= color, command = lambda: self.switchscreen(ifPressed))
+        self.masterx = masterx
+        self.textx = textx
+        self.color = color
+        self.ifPressed = ifPressed
+        #if pressed is supposed to be an image path to the next scene
     
-    def switchscreen(self)
+    def switchscreen(self):
+        self.ifPressed
+
+        global TheBackground 
+        TheBackground = backgound(masterx = base, imagex= self.ifPressed )
+        self.master.destroy()
+        #this automatically destroys the button too
