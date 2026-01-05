@@ -27,7 +27,7 @@ class scenebutton(Button):
         self.textx = textx
         self.color = color
         self.ifPressed = ifPressed
-        #if pressed is supposed to be an image path to the next scene
+        #if pressed is supposed to be an image path to the next scene or something idk
     
     def switchscreen(self):
         self.ifPressed
