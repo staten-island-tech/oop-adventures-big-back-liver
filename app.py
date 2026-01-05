@@ -10,7 +10,7 @@ base = Tk()
 base.geometry("1500x900")
 base.resizable(False, False)
 
-location1 = backgound(masterx= base, imagex)
+location1 = backgound(masterx= base, imagex = )
 
 
 base.mainloop()
