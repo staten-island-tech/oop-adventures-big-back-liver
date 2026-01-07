@@ -27,7 +27,7 @@ class backgound(Frame):
 
 class scenebutton(Button):
 
-    def __init__(self, ifPressed, locx, locy, identity, masterx = base, textx = "Continue", color = "Grey", widthx = 25, heighty = 5, ):
+    def __init__(self, ifPressed, locx, locy, identity, masterx = base, textx = "Continue", color = "Grey", widthx = 15, heighty = 3, ):
         super().__init__(master= masterx, text = textx, width= widthx, height= heighty, fg= color, command = self.switchscreen)
         self.masterx = masterx
         self.textx = textx
@@ -52,8 +52,8 @@ class scenebutton(Button):
 
 #scene one
 location1 = backgound(masterx= base, imagex= "backgrounddesk.jpg")
-UseLaptop = scenebutton(identity= "UseLaptop", masterx = location1, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .5 )
-UseLaptop = scenebutton(identity= "UseLaptop", masterx = location1, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .5 )
+UseLaptop1 = scenebutton(identity= "UseLaptop", masterx = location1, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .5 )
+LeaveDesk1 = scenebutton(identity= "LeaveDesk(bedroom)", masterx = location1, textx= "Leave desk", ifPressed= "backgroundbedroom.jpg", locx= .5, locy = 1 )
 base.wait_variable(specialsring)
 
 
