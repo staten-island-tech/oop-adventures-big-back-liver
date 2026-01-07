@@ -27,27 +27,29 @@ class backgound(Frame):
 
 class scenebutton(Button):
 
-    def __init__(self, ifPressed, locx, locy, masterx = base, textx = "Continue", color = "Grey", widthx = 75, heighty = 25, ):
+    def __init__(self, ifPressed, locx, locy, masterx = base, textx = "Continue", color = "Grey", widthx = 25, heighty = 5, ):
         super().__init__(master= masterx, text = textx, width= widthx, height= heighty, fg= color, command = self.switchscreen)
         self.masterx = masterx
         self.textx = textx
         self.color = color
         self.ifPressed = ifPressed
+        self.specialsring = StringVar()
         #if pressed is supposed to be an image path to the next scene or something idk
         self.place(anchor= "center", relx = locx, rely = locy )
+        #loc is a float that hsdjfghgfrsjhhfrujfdhg
     
     def switchscreen(self):
-        self.ifPressed
+        self.master.destroy()
 
         global TheBackground 
         TheBackground = backgound(masterx = base, imagex= self.ifPressed )
-        self.master.destroy()
+        
         #this automatically destroys the button too
 
 
 #scene one
-location1 = backgound(masterx= base, imagex= "backgrounddesk.jpg" )
-button1 = scenebutton(masterx = location1, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .5, locy = .5 )
+location1 = backgound(masterx= base, imagex= "backgrounddesk.jpg")
+button1 = scenebutton(masterx = location1, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .5 )
  
 
 
