@@ -33,13 +33,15 @@ class scenebutton(Button):
         self.textx = textx
         self.color = color
         self.ifPressed = ifPressed
-        self.specialsring = StringVar()
+        global specialsring
+        specialsring = StringVar()
         #if pressed is supposed to be an image path to the next scene or something idk
         self.place(anchor= "center", relx = locx, rely = locy )
         #loc is a float that hsdjfghgfrsjhhfrujfdhg
     
     def switchscreen(self):
         self.master.destroy()
+        specialsring.set("GOONAlICIOUS ACTIONS HFSGPIIFJVCXJDFKBJIGNDFB (The user has interacted with the widget)")
 
         global TheBackground 
         TheBackground = backgound(masterx = base, imagex= self.ifPressed )
@@ -50,7 +52,8 @@ class scenebutton(Button):
 #scene one
 location1 = backgound(masterx= base, imagex= "backgrounddesk.jpg")
 button1 = scenebutton(masterx = location1, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .5 )
- 
+base.wait_variable(specialsring)
+
 
 
 base.mainloop()
