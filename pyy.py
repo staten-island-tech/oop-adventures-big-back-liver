@@ -10,14 +10,16 @@ FILe = Image.open("open.jpg")
 FILe = FILe.resize(size=[900,900])
 FILe = ImageTk.PhotoImage(FILe)
 
+
+
 picture = Label(master= window, image=FILe)
 picture.pack()
 label = Label(picture, text="what's your name? type below", font=("Helvetica", 28), wraplength= 800)
-label.place(relx = .35 , rely = .1)
+label.place(relx = .22 , rely = .05)
 my_response = Entry(picture, width=30, font=("Helvetica", 28))
-my_response.place(relx = .3 , rely = .2)
+my_response.place(relx = .16 , rely = .25)
 name = my_response
-my_button = Button(picture, text="start game?", font=("Courier", 28), fg="white", bg="midnight blue", relief="ridge")
-my_button.place(relx = .35 , rely = .1)
+my_button = Button(picture, text="start game?", font=("Courier", 28), fg="white", bg="forest green", relief="ridge")
+my_button.place(relx = .35 , rely = .35)
 window.mainloop()
 
