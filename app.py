@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 
 base = Tk()
 base.geometry("900x900")
-base.resizable(False, True)
+base.resizable(False, False)
 specialsring = StringVar()
 
 class backgound(Frame):
