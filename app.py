@@ -1,3 +1,4 @@
+
 import tkinter
 from tkinter import *
 from PIL import Image, ImageTk
@@ -46,33 +47,42 @@ class scenebutton(Button):
         
         #this automatically destroys the button too
 
-class UselessButton(Button):
-
-    def __init__(self, locx, locy, masterx, textx = "Continue", fgcolor = "Grey", bgcolor = "Black"):
-        
-        super().__init__(master= masterx, text = textx, width= 15, height= 2, fg= fgcolor, bg= bgcolor )
-        self.masterx = masterx
-        self.textx = textx
-        self.place(anchor= "center", relx = locx, rely = locy )
     
 class dialogue(Label):
 
-    def __init__(self, masterx, textx, fgcolor = "Grey", bgcolor = "Black"):
+    def __init__(self,  textx, masterx, fgcolor = "Grey", bgcolor = "Black"):
 
-        super().__init__(master= masterx, text= textx, wraplength= 400, fg = fgcolor, bg= bgcolor, font = ("Arial", 20))
+        super().__init__(master= masterx, wraplength= 600, fg = fgcolor, bg= bgcolor, font = ("Arial", 20))
         self.place(anchor= "s", relx = .5, rely = .9,  )
 
-
+        #hahahhaha i got this effect to  work 
+        b =""
+        for char in textx:
+            self.after(50)
+            self.update()
+            b = b + char
+            self.config(text= b)
+            
         button_pressedok = StringVar()
-        ok = Button(master= self, text= "Okay", fg = "grey", bg = "black", command=lambda: button_pressedok.set(value="buttonpressedok"))
-        ok.place(anchor="se", relx=1, rely = 1)
-        TheBackground.update()
-        TheBackground.busy()
-        ok.wait_variable(button_pressedok)
+        ok = Button(master= TheBackground, text= "Okay", fg = "grey", bg = "black", command=lambda: button_pressedok.set(value="buttonpressedok"))
+        ok.place(anchor="n", relx=.5, rely = .9)
+        TheBackground.wait_variable(button_pressedok)
+        self.destroy()
+        ok.destroy()
         
-        ok.destroy
 
+class UselessButton(Button):
 
+    def __init__(self, locx, locy, message, masterx, textx = "Continue", fgcolor = "Grey", bgcolor = "Black"):
+        
+        super().__init__(master= masterx, text = textx, width= 15, height= 2, fg= fgcolor, bg= bgcolor, command = self.Press )
+        self.masterx = masterx
+        self.textx = textx
+        self.message = message
+        self.place(anchor= "center", relx = locx, rely = locy )
+
+    def Press(self):
+        self.dialogue = dialogue(masterx=TheBackground, textx= self.message)
 
 #scene one
 location1 = backgound(masterx= base, imagex= "backgroundbedroom.jpg")
@@ -82,10 +92,13 @@ base.wait_variable(specialsring)
 
 if specialsring.get() == "Deskbutton":
     UseLaptop1 = scenebutton(identity= "UseLaptop", masterx = TheBackground, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .6 )
-    LeaveDesk1 = scenebutton(identity= "LeaveDesk(bedroom)", masterx = TheBackground, textx= "Leave desk", ifPressed= "backgroundbedroom.jpg", locx= .5, locy = 0.9 )
+    LeaveDesk1 = UselessButton( masterx = TheBackground, textx= "Leave desk", locx= .5, locy = 0.9, message= "I should probably work..." )
+    #LeaveDesk1 = scenebutton(identity= "LeaveDesk(bedroom)", masterx = TheBackground, textx= "Leave desk", ifPressed= "backgroundbedroom.jpg", locx= .5, locy = 0.9 )
     
     dialgoue1 = dialogue(masterx= TheBackground, textx= "I'm getting low on funds....")
-    dialgoue1 = dialogue(masterx= TheBackground, textx= "I should probably do a live stream.")
+    dialgoue1 = dialogue(masterx= TheBackground, textx= "I should probably do a live stream. It's a quick way to get money... ")
+    base.wait_variable(specialsring)
+    dialgoue1 = dialogue(masterx= TheBackground,textx= "Let's see what my followers are saying. Maybe they could give me some ideas.")
 
 
 
