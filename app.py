@@ -4,8 +4,8 @@ from PIL import Image, ImageTk
 
 base = Tk()
 base.geometry("900x900")
-base.resizable(False, False)
-
+base.resizable(False, True)
+specialsring = StringVar()
 
 class backgound(Frame):
     
@@ -27,15 +27,12 @@ class backgound(Frame):
 
 class scenebutton(Button):
 
-    def __init__(self, ifPressed, locx, locy, identity, masterx = base, textx = "Continue", color = "Grey", widthx = 15, heighty = 3, ):
-        super().__init__(master= masterx, text = textx, width= widthx, height= heighty, fg= color, command = self.switchscreen)
+    def __init__(self, ifPressed, locx, locy, identity, masterx = base, textx = "Continue", fgcolor = "Grey", bgcolor = "Black" ):
+        super().__init__(master= masterx, text = textx, width= 15, height= 2, fg= fgcolor, bg= bgcolor, command = self.switchscreen)
         self.masterx = masterx
         self.textx = textx
-        self.color = color
         self.ifPressed = ifPressed
-        self.identity = identity
-        global specialsring
-        specialsring = StringVar()
+        self.identity = identity      
         #if pressed is supposed to be an image path to the next scene or something idk
         self.place(anchor= "center", relx = locx, rely = locy )
         #loc is a float that hsdjfghgfrsjhhfrujfdhg
@@ -49,12 +46,47 @@ class scenebutton(Button):
         
         #this automatically destroys the button too
 
+class UselessButton(Button):
+
+    def __init__(self, locx, locy, masterx, textx = "Continue", fgcolor = "Grey", bgcolor = "Black"):
+        
+        super().__init__(master= masterx, text = textx, width= 15, height= 2, fg= fgcolor, bg= bgcolor )
+        self.masterx = masterx
+        self.textx = textx
+        self.place(anchor= "center", relx = locx, rely = locy )
+    
+class dialogue(Label):
+
+    def __init__(self, masterx, textx, fgcolor = "Grey", bgcolor = "Black"):
+
+        super().__init__(master= masterx, text= textx, wraplength= 400, fg = fgcolor, bg= bgcolor, font = ("Arial", 20))
+        self.place(anchor= "s", relx = .5, rely = .9,  )
+
+
+        button_pressedok = StringVar()
+        ok = Button(master= self, text= "Okay", fg = "grey", bg = "black", command=lambda: button_pressedok.set(value="buttonpressedok"))
+        ok.place(anchor="se", relx=1, rely = 1)
+        TheBackground.update()
+        TheBackground.busy()
+        ok.wait_variable(button_pressedok)
+        
+        ok.destroy
+
+
 
 #scene one
-location1 = backgound(masterx= base, imagex= "backgrounddesk.jpg")
-UseLaptop1 = scenebutton(identity= "UseLaptop", masterx = location1, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .5 )
-LeaveDesk1 = scenebutton(identity= "LeaveDesk(bedroom)", masterx = location1, textx= "Leave desk", ifPressed= "backgroundbedroom.jpg", locx= .5, locy = 1 )
+location1 = backgound(masterx= base, imagex= "backgroundbedroom.jpg")
+Deskbutton = scenebutton(identity="Deskbutton", masterx= location1, textx = "Go to Desk", ifPressed= "backgrounddesk.jpg", locx= 0.35, locy=0.5 )
+LeaveRoom = scenebutton(identity="Leaveroom", masterx= location1, textx= "Leave room", ifPressed= "backgroundhallway.jpg", locx= .7, locy=.5)
 base.wait_variable(specialsring)
+
+if specialsring.get() == "Deskbutton":
+    UseLaptop1 = scenebutton(identity= "UseLaptop", masterx = TheBackground, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .6 )
+    LeaveDesk1 = scenebutton(identity= "LeaveDesk(bedroom)", masterx = TheBackground, textx= "Leave desk", ifPressed= "backgroundbedroom.jpg", locx= .5, locy = 0.9 )
+    
+    dialgoue1 = dialogue(masterx= TheBackground, textx= "I'm getting low on funds....")
+    dialgoue1 = dialogue(masterx= TheBackground, textx= "I should probably do a live stream.")
+
 
 
 
