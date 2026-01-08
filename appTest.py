@@ -3,10 +3,12 @@ import tkinter
 from tkinter import *
 from PIL import Image, ImageTk
 
+
 base = Tk()
 base.geometry("900x900")
 base.resizable(False, False)
 specialsring = StringVar()
+
 
 class backgound(Frame):
     
@@ -83,26 +85,11 @@ class UselessButton(Button):
 
     def Press(self):
         self.dialogue = dialogue(masterx=TheBackground, textx= self.message)
+#states from laptop accesss
+TheBackground = backgound(base, "backgroundlaptop.jpg")
+dialgoue1 = dialogue(masterx= TheBackground,textx= "Let's see what my followers are saying. Maybe they could give me some ideas.")
 
-#scene one
-location1 = backgound(masterx= base, imagex= "backgroundbedroom.jpg")
-Deskbutton = scenebutton(identity="Deskbutton", masterx= location1, textx = "Go to Desk", ifPressed= "backgrounddesk.jpg", locx= 0.35, locy=0.5 )
-LeaveRoom = scenebutton(identity="Leaveroom", masterx= location1, textx= "Leave room", ifPressed= "backgroundhallway.jpg", locx= .7, locy=.5)
-base.wait_variable(specialsring)
-
-if specialsring.get() == "Deskbutton":
-    dialgoue1 = dialogue(masterx= TheBackground, textx= "I'm getting low on funds....")
-    dialgoue1 = dialogue(masterx= TheBackground, textx= "I should probably do a live stream. It's a quick way to get money... ")
-    UseLaptop1 = scenebutton(identity= "UseLaptop", masterx = TheBackground, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .6 )
-    LeaveDesk1 = UselessButton( masterx = TheBackground, textx= "Leave desk", locx= .5, locy = 0.9, message= "I should probably work..." )
-    #No. LeaveDesk1 = scenebutton(identity= "LeaveDesk(bedroom)", masterx = TheBackground, textx= "Leave desk", ifPressed= "backgroundbedroom.jpg", locx= .5, locy = 0.9 )
-    
-    
-    base.wait_variable(specialsring)
-    dialgoue1 = dialogue(masterx= TheBackground,textx= "Let's see what my followers are saying. Maybe they could give me some ideas.")
-
-    useLaptop2 = scenebutton(identity= "Screen", masterx=TheBackground, textx= "Check Messages", ifPressed="backgroundlaptopScreen.jpg",  locx= .5, locy = .4)
-
+useLaptop2 = scenebutton(identity= "Screen", masterx= TheBackground, textx= "Check Messages", ifPressed="backgroundlaptopScreen.jpg",  locx= .5, locy = .4)
 
 
 
