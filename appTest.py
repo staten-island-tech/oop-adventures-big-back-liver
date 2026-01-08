@@ -8,10 +8,7 @@ base = Tk()
 base.geometry("900x900")
 base.resizable(False, False)
 specialsring = StringVar()
-base = Tk()
-base.geometry("900x900")
-base.resizable(False, False)
-specialsring = StringVar()
+
 
 class backgound(Frame):
     
@@ -88,13 +85,11 @@ class UselessButton(Button):
 
     def Press(self):
         self.dialogue = dialogue(masterx=TheBackground, textx= self.message)
+#states from laptop accesss
+TheBackground = backgound(base, "backgroundlaptop.jpg")
+dialgoue1 = dialogue(masterx= TheBackground,textx= "Let's see what my followers are saying. Maybe they could give me some ideas.")
 
-
-bg= backgound(masterx= base, imagex= "backgroundbedroom.jpg")
-
-dialgoue1 = dialogue(masterx= bg,textx= "Let's see what my followers are saying. Maybe they could give me some ideas.")
-
-useLaptop2 = scenebutton(identity= "Screen", masterx=bg, textx= "Check Messages", ifPressed="backgroundlaptopScreen.jpg",  locx= .5, locy = .4)
+useLaptop2 = scenebutton(identity= "Screen", masterx= TheBackground, textx= "Check Messages", ifPressed="backgroundlaptopScreen.jpg",  locx= .5, locy = .4)
 
 
 
