@@ -2,16 +2,19 @@
 import tkinter
 from tkinter import *
 from PIL import Image, ImageTk
+import time
 
 import pygame
 pygame.init()
 pygame.mixer.init()
 
-pygame.init()
-pygame.mixer.init()
-sfx = pygame.mixer.Sound("audio file\DOMER.mp3")
-channel1 = pygame.mixer.Channel(1)  
- 
+def notificationSFX():
+    sfxdomer = pygame.mixer.Sound("audio file\DOMER.mp3")
+    channel1 = pygame.mixer.Channel(1)
+    channel1.play(sfxdomer)
+    base.update()
+    time.sleep(2)  
+    base.update()
 
 base = Tk()
 base.geometry("900x900")
@@ -61,7 +64,7 @@ class scenebutton(Button):
     
 class dialogue(Label):
 
-    def __init__(self,  textx, masterx, fgcolor = "Grey", bgcolor = "Black"):
+    def __init__(self,  textx, masterx, fgcolor = "Grey", bgcolor = "Black", speed = 50):
 
         super().__init__(master= masterx, wraplength= 600, fg = fgcolor, bg= bgcolor, font = ("Arial", 20))
         self.place(anchor= "s", relx = .5, rely = .9,  )
@@ -69,7 +72,7 @@ class dialogue(Label):
         #hahahhaha i got this effect to  work 
         b =""
         for char in textx:
-            self.after(50)
+            self.after(speed)
             self.update()
             b = b + char
             self.config(text= b)
@@ -113,6 +116,21 @@ if specialsring.get() == "Deskbutton":
     dialgoue1 = dialogue(masterx= TheBackground,textx= "Let's see what my followers are saying. Maybe they could give me some ideas.")
 
     useLaptop2 = scenebutton(identity= "Screen", masterx=TheBackground, textx= "Check Messages", ifPressed="backgroundlaptopScreen.jpg",  locx= .5, locy = .4)
+    base.wait_variable(specialsring)
+    base.update()
+    TheBackground.update()
+    notificationSFX()
+    dialgoue2a = dialogue(masterx= TheBackground, textx= "What was that notification?" )
+    TheBackground.kys()
+    TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN1.jpeg")
+    notificationSFX()
+    TheBackground.kys() 
+    TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN2.png")
+    base.update()
+    time.sleep(2)
+    base.update()
+    dialgoue2a = dialogue(masterx= TheBackground, textx= ".....", speed= 200)
+    base.mainloop()
 
 
 

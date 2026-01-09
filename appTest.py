@@ -18,18 +18,6 @@ def notificationSFX():
     base.update()
 
  
-def anim(og, name, Ftype, frams):
-    og.kys()
-    for i in range(0, frams+1):
-        base.update()
-        bith = str(i)
-        blud = name + bith + Ftype
-        print(blud)
-        TheBackground = backgound(masterx = base, imagex= blud)
-        base.update()
-        base.after(50)
-        base.update()
-
 base = Tk()
 base.geometry("900x900")
 base.resizable(False, True)
@@ -125,11 +113,11 @@ notificationSFX()
 dialgoue2a = dialogue(masterx= TheBackground, textx= "What was that notification?" )
 TheBackground.kys()
 TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN1.jpeg")
-dialgoue2a = dialogue(masterx= TheBackground, textx= "...." )
 notificationSFX()
-anim(name="notification1/backgroundlaptopScreenN", Ftype= ".png", frams= 5, og = TheBackground)
-base.update()
 TheBackground.kys() 
-TheBackground = backgound(masterx= base, imagex= "notification1/backgroundlaptopScreenN5.png")
+TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN2.png")
+base.update()
+time.sleep(2)
+base.update()
 dialgoue2a = dialogue(masterx= TheBackground, textx= ".....")
 base.mainloop()
