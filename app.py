@@ -3,6 +3,10 @@ import tkinter
 from tkinter import *
 from PIL import Image, ImageTk
 
+import pygame
+pygame.init()
+pygame.mixer.init()
+
 base = Tk()
 base.geometry("900x900")
 base.resizable(False, False)
@@ -10,11 +14,11 @@ specialsring = StringVar()
 
 class backgound(Frame):
     
-    def __init__(self, masterx = base, imagex = "backgroundspookyforest.jpg" ):
+    def __init__(self, masterx = base, imagex = "backgroundbedroom.jpg" ):
         super().__init__(master= masterx)
         self.pack()
 
-        self.picter = Image.open(imagex)
+        self.picter = Image.open( "background\\" + imagex)
         self.picter = self.picter.resize([900,900])
         tkinterconver = ImageTk.PhotoImage(self.picter)
 

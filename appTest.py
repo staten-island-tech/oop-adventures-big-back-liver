@@ -3,6 +3,10 @@ import tkinter
 from tkinter import *
 from PIL import Image, ImageTk
 
+import pygame
+pygame.init()
+pygame.mixer.init()
+domer = 
 
 base = Tk()
 base.geometry("900x900")
@@ -91,6 +95,7 @@ dialgoue2a = dialogue(masterx= TheBackground,textx= "Let's see what my followers
 
 useLaptop2 = scenebutton(identity= "Screen", masterx= TheBackground, textx= "Check Messages", ifPressed="backgroundlaptopScreen.jpg",  locx= .5, locy = .4)
 base.wait_variable(specialsring)
+
 dialgoue2a = dialogue(masterx= TheBackground )
 
 base.mainloop()
