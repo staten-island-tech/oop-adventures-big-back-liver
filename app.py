@@ -7,10 +7,17 @@ import pygame
 pygame.init()
 pygame.mixer.init()
 
+pygame.init()
+pygame.mixer.init()
+sfx = pygame.mixer.Sound("audio file\DOMER.mp3")
+channel1 = pygame.mixer.Channel(1)  
+ 
+
 base = Tk()
 base.geometry("900x900")
 base.resizable(False, False)
 specialsring = StringVar()
+
 
 class backgound(Frame):
     
