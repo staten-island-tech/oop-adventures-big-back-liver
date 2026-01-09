@@ -13,16 +13,22 @@ def notificationSFX():
     sfxdomer = pygame.mixer.Sound("audio file\DOMER.mp3")
     channel1 = pygame.mixer.Channel(1)
     channel1.play(sfxdomer)
+    base.update()
     time.sleep(2)  
+    base.update()
+
  
 def anim(og, name, Ftype, frams):
     og.kys()
     for i in range(0, frams+1):
-        bith = str(i)
-        name = name + bith + Ftype
-        TheBackground = backgound(masterx = base, imagex= name)
         base.update()
-        base.after(10)
+        bith = str(i)
+        blud = name + bith + Ftype
+        print(blud)
+        TheBackground = backgound(masterx = base, imagex= blud)
+        base.update()
+        base.after(50)
+        base.update()
 
 base = Tk()
 base.geometry("900x900")
@@ -34,8 +40,9 @@ class backgound(Frame):
     def __init__(self, masterx = base, imagex = "backgroundbedroom.jpg" ):
         super().__init__(master= masterx)
         self.pack()
+        
 
-        self.picter = Image.open( "background\\" + imagex)
+        self.picter = Image.open( "background/" + imagex)
         self.picter = self.picter.resize([900,900])
         tkinterconver = ImageTk.PhotoImage(self.picter)
 
@@ -120,8 +127,9 @@ TheBackground.kys()
 TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN1.jpeg")
 dialgoue2a = dialogue(masterx= TheBackground, textx= "...." )
 notificationSFX()
-anim(name="notification1\backgroundlaptopScreenN", Ftype= ".png", frams= 5, og = TheBackground)
+anim(name="notification1/backgroundlaptopScreenN", Ftype= ".png", frams= 5, og = TheBackground)
 base.update()
-time.sleep(3)
+TheBackground.kys() 
+TheBackground = backgound(masterx= base, imagex= "notification1/backgroundlaptopScreenN5.png")
 dialgoue2a = dialogue(masterx= TheBackground, textx= ".....")
 base.mainloop()
