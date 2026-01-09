@@ -4,23 +4,30 @@ from tkinter import *
 from PIL import Image, ImageTk
 
 import pygame
+import time
+
 pygame.init()
 pygame.mixer.init()
-domer = 
+
+def notificationSFX():
+    sfxdomer = pygame.mixer.Sound("audio file\DOMER.mp3")
+    channel1 = pygame.mixer.Channel(1)
+    channel1.play(sfxdomer)
+    time.sleep(2)  
+ 
 
 base = Tk()
 base.geometry("900x900")
 base.resizable(False, False)
 specialsring = StringVar()
 
-
 class backgound(Frame):
     
-    def __init__(self, masterx = base, imagex = "backgroundspookyforest.jpg" ):
+    def __init__(self, masterx = base, imagex = "backgroundbedroom.jpg" ):
         super().__init__(master= masterx)
         self.pack()
 
-        self.picter = Image.open(imagex)
+        self.picter = Image.open( "background\\" + imagex)
         self.picter = self.picter.resize([900,900])
         tkinterconver = ImageTk.PhotoImage(self.picter)
 
@@ -31,6 +38,7 @@ class backgound(Frame):
 
     def kys(self):
         self.destroy()
+
 
 class scenebutton(Button):
 
@@ -70,7 +78,7 @@ class dialogue(Label):
             self.config(text= b)
             
         button_pressedok = StringVar()
-        ok = Button(master= TheBackground, text= "Okay", fg = "grey", bg = "black", command=lambda: button_pressedok.set(value="buttonpressedok"))
+        ok = Button(master= TheBackground, text= "Next", fg = "grey", bg = "black", command=lambda: button_pressedok.set(value="buttonpressedok"))
         ok.place(anchor="n", relx=.5, rely = .9)
         TheBackground.wait_variable(button_pressedok)
         self.destroy()
@@ -95,7 +103,12 @@ dialgoue2a = dialogue(masterx= TheBackground,textx= "Let's see what my followers
 
 useLaptop2 = scenebutton(identity= "Screen", masterx= TheBackground, textx= "Check Messages", ifPressed="backgroundlaptopScreen.jpg",  locx= .5, locy = .4)
 base.wait_variable(specialsring)
-
-dialgoue2a = dialogue(masterx= TheBackground )
+base.update()
+TheBackground.update()
+notificationSFX()
+dialgoue2a = dialogue(masterx= TheBackground, textx= "What was that notification?" )
+TheBackground.kys()
+TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN1.jpeg")
+notificationSFX()
 
 base.mainloop()
