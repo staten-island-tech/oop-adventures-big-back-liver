@@ -16,9 +16,11 @@ def notificationSFX():
     time.sleep(2)  
     base.update()
 
+def useDialogue(text, espeed = 50):
+    dialgoue = dialogue(masterx= TheBackground, textx= text, speed= espeed )
 base = Tk()
 base.geometry("900x900")
-base.resizable(False, False)
+base.resizable(False, True)
 specialsring = StringVar()
 
 
@@ -72,7 +74,7 @@ class dialogue(Label):
         #hahahhaha i got this effect to  work 
         b =""
         for char in textx:
-            self.after(speed)
+            self.after(ms=speed)
             self.update()
             b = b + char
             self.config(text= b)
@@ -105,22 +107,22 @@ LeaveRoom = scenebutton(identity="Leaveroom", masterx= location1, textx= "Leave 
 base.wait_variable(specialsring)
 
 if specialsring.get() == "Deskbutton":
-    dialgoue1 = dialogue(masterx= TheBackground, textx= "I'm getting low on funds....")
-    dialgoue1 = dialogue(masterx= TheBackground, textx= "I should probably do a live stream. It's a quick way to get money... ")
+    useDialogue( "I'm running out of money....")
+    useDialogue("I should probably do a live stream. It's a quick way to get money... ")
     UseLaptop1 = scenebutton(identity= "UseLaptop", masterx = TheBackground, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .6 )
     LeaveDesk1 = UselessButton( masterx = TheBackground, textx= "Leave desk", locx= .5, locy = 0.9, message= "I should probably work..." )
     #No. LeaveDesk1 = scenebutton(identity= "LeaveDesk(bedroom)", masterx = TheBackground, textx= "Leave desk", ifPressed= "backgroundbedroom.jpg", locx= .5, locy = 0.9 )
     
     
     base.wait_variable(specialsring)
-    dialgoue1 = dialogue(masterx= TheBackground,textx= "Let's see what my followers are saying. Maybe they could give me some ideas.")
+    useDialogue( "Let's see what my followers are saying. Maybe they could give me some ideas.")
 
     useLaptop2 = scenebutton(identity= "Screen", masterx=TheBackground, textx= "Check Messages", ifPressed="backgroundlaptopScreen.jpg",  locx= .5, locy = .4)
     base.wait_variable(specialsring)
     base.update()
     TheBackground.update()
     notificationSFX()
-    dialgoue2a = dialogue(masterx= TheBackground, textx= "What was that notification?" )
+    useDialogue("What was that notification?" )
     TheBackground.kys()
     TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN1.jpeg")
     notificationSFX()
@@ -129,8 +131,10 @@ if specialsring.get() == "Deskbutton":
     base.update()
     time.sleep(2)
     base.update()
-    dialgoue2a = dialogue(masterx= TheBackground, textx= ".....", speed= 200)
-    base.mainloop()
+    useDialogue(text= ".....", speed= 500)
+    useDialogue("um...")
+    useDialogue("i mean.... i need some money...")
+    
 
 
 
