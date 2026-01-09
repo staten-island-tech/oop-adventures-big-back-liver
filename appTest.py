@@ -15,10 +15,18 @@ def notificationSFX():
     channel1.play(sfxdomer)
     time.sleep(2)  
  
+def anim(og, name, Ftype, frams):
+    og.kys()
+    for i in range(0, frams+1):
+        bith = str(i)
+        name = name + bith + Ftype
+        TheBackground = backgound(masterx = base, imagex= name)
+        base.update()
+        base.after(10)
 
 base = Tk()
 base.geometry("900x900")
-base.resizable(False, False)
+base.resizable(False, True)
 specialsring = StringVar()
 
 class backgound(Frame):
@@ -35,6 +43,7 @@ class backgound(Frame):
         self.label.storage = tkinterconver
         
         self.label.pack(expand= True, fill= "both")
+        masterx.update()
 
     def kys(self):
         self.destroy()
@@ -109,6 +118,10 @@ notificationSFX()
 dialgoue2a = dialogue(masterx= TheBackground, textx= "What was that notification?" )
 TheBackground.kys()
 TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN1.jpeg")
+dialgoue2a = dialogue(masterx= TheBackground, textx= "...." )
 notificationSFX()
-
+anim(name="notification1\backgroundlaptopScreenN", Ftype= ".png", frams= 5, og = TheBackground)
+base.update()
+time.sleep(3)
+dialgoue2a = dialogue(masterx= TheBackground, textx= ".....")
 base.mainloop()
