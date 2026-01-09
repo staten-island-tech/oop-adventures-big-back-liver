@@ -87,10 +87,10 @@ class UselessButton(Button):
         self.dialogue = dialogue(masterx=TheBackground, textx= self.message)
 #states from laptop accesss
 TheBackground = backgound(base, "backgroundlaptop.jpg")
-dialgoue1 = dialogue(masterx= TheBackground,textx= "Let's see what my followers are saying. Maybe they could give me some ideas.")
+dialgoue2a = dialogue(masterx= TheBackground,textx= "Let's see what my followers are saying. Maybe they could give me some ideas.")
 
 useLaptop2 = scenebutton(identity= "Screen", masterx= TheBackground, textx= "Check Messages", ifPressed="backgroundlaptopScreen.jpg",  locx= .5, locy = .4)
 base.wait_variable(specialsring)
-
+dialgoue2a = dialogue(masterx= TheBackground )
 
 base.mainloop()
