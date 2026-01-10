@@ -101,15 +101,16 @@ class UselessButton(Button):
         self.dialogue = dialogue(masterx=TheBackground, textx= self.message)
 
 #scene one
-location1 = backgound(masterx= base, imagex= "backgroundbedroom.jpg")
-Deskbutton = scenebutton(identity="Deskbutton", masterx= location1, textx = "Go to Desk", ifPressed= "backgrounddesk.jpg", locx= 0.35, locy=0.5 )
-LeaveRoom = scenebutton(identity="Leaveroom", masterx= location1, textx= "Leave room", ifPressed= "backgroundhallway.jpg", locx= .7, locy=.5)
+TheBackground = backgound(masterx= base, imagex= "backgroundbedroom.jpg")
+Deskbutton = scenebutton(identity="Deskbutton", masterx= TheBackground, textx = "Go to Desk", ifPressed= "backgrounddesk.jpg", locx= 0.35, locy=0.5 )
+#LeaveRoom = scenebutton(identity="Leaveroom", masterx= location1, textx= "Leave room", ifPressed= "backgroundhallway.jpg", locx= .7, locy=.5)
+LeaveRoom = UselessButton(masterx= TheBackground, textx= "Leave room", locx= .7, locy=.5, message= "i dont want to go there.")
 base.wait_variable(specialsring)
 
 #scene 2a
 if specialsring.get() == "Deskbutton":
     useDialogue( "I'm running out of money....")
-    useDialogue("I should probably do a live stream. It's a quick way to get money... ")
+    useDialogue("I should probably do a live stream. It's a quick way to get some... ")
     UseLaptop1 = scenebutton(identity= "UseLaptop", masterx = TheBackground, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .6 )
     LeaveDesk1 = UselessButton( masterx = TheBackground, textx= "Leave desk", locx= .5, locy = 0.9, message= "I should probably work..." )
     #No. LeaveDesk1 = scenebutton(identity= "LeaveDesk(bedroom)", masterx = TheBackground, textx= "Leave desk", ifPressed= "backgroundbedroom.jpg", locx= .5, locy = 0.9 )
@@ -138,11 +139,11 @@ if specialsring.get() == "Deskbutton":
     
     useDialogue("what.... what do i do....", espeed= 200)
 
+    #  the CHOICE .
     yesRespond = scenebutton(masterx= TheBackground,identity= "YESFEET", textx= "Yes", ifPressed= "LaptopChat1a.png", locx= 0.4, locy = 0.7 )
     noRespond = scenebutton(masterx= TheBackground, identity= "fuhno", textx= "No", ifPressed= "LaptopChat1b.png" ,  locx= 0.6, locy = 0.7)
     
     base.wait_variable(specialsring)
-    time.sleep(2)
     base.update()
 
     if specialsring.get() == "YESFEET":
@@ -157,7 +158,13 @@ if specialsring.get() == "Deskbutton":
         TheBackground.kys() 
         TheBackground = backgound(masterx= base, imagex= "LaptopChat2b.png")
         
-        useDialogue("i feel unsafe...", espeed= 450)
+        useDialogue("i feel unsafe...", espeed= 400)
+
+    TheBackground.kys() 
+    TheBackground = backgound(masterx= base, imagex= "backgroundlaptop")
+    useDialogue("i hate my life.") #wrd
+
+
 
     #scene 3a
 
