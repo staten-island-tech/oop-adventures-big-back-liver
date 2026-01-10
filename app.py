@@ -30,7 +30,7 @@ class backgound(Frame):
         super().__init__(master= masterx)
         self.pack()
 
-        self.picter = Image.open( "background\\" + imagex)
+        self.picter = Image.open( "background/" + imagex)
         self.picter = self.picter.resize([900,900])
         tkinterconver = ImageTk.PhotoImage(self.picter)
 
@@ -44,7 +44,7 @@ class backgound(Frame):
 
 class scenebutton(Button):
 
-    def __init__(self, ifPressed, locx, locy, identity, masterx = base, textx = "Continue", fgcolor = "Grey", bgcolor = "Black" ):
+    def __init__(self, ifPressed, locx, locy, identity, masterx, textx = "Continue", fgcolor = "Grey", bgcolor = "Black" ):
         super().__init__(master= masterx, text = textx, width= 15, height= 2, fg= fgcolor, bg= bgcolor, command = self.switchscreen)
         self.masterx = masterx
         self.textx = textx
@@ -70,7 +70,6 @@ class dialogue(Label):
 
         super().__init__(master= masterx, wraplength= 600, fg = fgcolor, bg= bgcolor, font = ("Arial", 20))
         self.place(anchor= "s", relx = .5, rely = .9,  )
-
         #hahahhaha i got this effect to  work 
         b =""
         for char in textx:
@@ -82,7 +81,8 @@ class dialogue(Label):
         button_pressedok = StringVar()
         ok = Button(master= TheBackground, text= "Next", fg = "grey", bg = "black", command=lambda: button_pressedok.set(value="buttonpressedok"))
         ok.place(anchor="n", relx=.5, rely = .9)
-        TheBackground.wait_variable(button_pressedok)
+        #TheBackground.wait_variable(button_pressedok)
+        base.wait_variable(button_pressedok)
         self.destroy()
         ok.destroy()
         
@@ -138,13 +138,26 @@ if specialsring.get() == "Deskbutton":
     
     useDialogue("what.... what do i do....", espeed= 200)
 
-    yesRespond = scenebutton(identity= "YESFEET", textx= "Yes", ifPressed= )
-    noRespond = scenebutton(identity= "fuhno", textx= "No", ifPressed= )
-
+    yesRespond = scenebutton(masterx= TheBackground,identity= "YESFEET", textx= "Yes", ifPressed= "LaptopChat1a.png", locx= 0.4, locy = 0.7 )
+    noRespond = scenebutton(masterx= TheBackground, identity= "fuhno", textx= "No", ifPressed= "LaptopChat1b.png" ,  locx= 0.6, locy = 0.7)
+    
+    base.wait_variable(specialsring)
+    time.sleep(2)
+    base.update()
 
     if specialsring.get() == "YESFEET":
-        useDialogue("um...")
+        useDialogue("um...", espeed= 400)
+        TheBackground.kys() 
+        
+        TheBackground = backgound(masterx= base, imagex= "LaptopChat2a.png")
         useDialogue("i mean.... i need some money...")
+
+    if specialsring.get() == "fuhno":
+        useDialogue("ugh...i've got a bad feeling about this.")
+        TheBackground.kys() 
+        TheBackground = backgound(masterx= base, imagex= "LaptopChat2b.png")
+        
+        useDialogue("i feel unsafe...", espeed= 450)
 
     #scene 3a
 
