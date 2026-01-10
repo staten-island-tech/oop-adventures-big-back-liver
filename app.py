@@ -70,6 +70,12 @@ class dialogue(Label):
 
         super().__init__(master= masterx, wraplength= 600, fg = fgcolor, bg= bgcolor, font = ("Arial", 20))
         self.place(anchor= "s", relx = .5, rely = .9,  )
+
+        for wig in TheBackground.winfo_children():
+            if wig.winfo_class() == "Button":
+                wig.config(state = 'disabled')
+        TheBackground.update()
+        
         #hahahhaha i got this effect to  work 
         b =""
         for char in textx:
@@ -83,6 +89,9 @@ class dialogue(Label):
         ok.place(anchor="n", relx=.5, rely = .9)
         #TheBackground.wait_variable(button_pressedok)
         base.wait_variable(button_pressedok)
+        for wig in TheBackground.winfo_children():
+            wig.config(state = 'normal')
+        TheBackground.update()
         self.destroy()
         ok.destroy()
         
