@@ -80,7 +80,7 @@ class dialogue(Label):
             self.config(text= b)
             
         button_pressedok = StringVar()
-        ok = Button(master= TheBackground, text= "Okay", fg = "grey", bg = "black", command=lambda: button_pressedok.set(value="buttonpressedok"))
+        ok = Button(master= TheBackground, text= "Next", fg = "grey", bg = "black", command=lambda: button_pressedok.set(value="buttonpressedok"))
         ok.place(anchor="n", relx=.5, rely = .9)
         TheBackground.wait_variable(button_pressedok)
         self.destroy()
@@ -106,13 +106,13 @@ Deskbutton = scenebutton(identity="Deskbutton", masterx= location1, textx = "Go 
 LeaveRoom = scenebutton(identity="Leaveroom", masterx= location1, textx= "Leave room", ifPressed= "backgroundhallway.jpg", locx= .7, locy=.5)
 base.wait_variable(specialsring)
 
+#scene 2a
 if specialsring.get() == "Deskbutton":
     useDialogue( "I'm running out of money....")
     useDialogue("I should probably do a live stream. It's a quick way to get money... ")
     UseLaptop1 = scenebutton(identity= "UseLaptop", masterx = TheBackground, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .6 )
     LeaveDesk1 = UselessButton( masterx = TheBackground, textx= "Leave desk", locx= .5, locy = 0.9, message= "I should probably work..." )
     #No. LeaveDesk1 = scenebutton(identity= "LeaveDesk(bedroom)", masterx = TheBackground, textx= "Leave desk", ifPressed= "backgroundbedroom.jpg", locx= .5, locy = 0.9 )
-    
     
     base.wait_variable(specialsring)
     useDialogue( "Let's see what my followers are saying. Maybe they could give me some ideas.")
@@ -131,10 +131,22 @@ if specialsring.get() == "Deskbutton":
     base.update()
     time.sleep(2)
     base.update()
-    useDialogue(text= ".....", speed= 500)
-    useDialogue("um...")
-    useDialogue("i mean.... i need some money...")
+    useDialogue(text= ".....", espeed= 500)
+    notificationSFX()
+    TheBackground.kys() 
+    TheBackground = backgound(masterx= base, imagex= "LaptopChat.jpeg")
     
+    useDialogue("what.... what do i do....", espeed= 200)
+
+    yesRespond = scenebutton(identity= "YESFEET", textx= "Yes", ifPressed= )
+    noRespond = scenebutton(identity= "fuhno", textx= "No", ifPressed= )
+
+
+    if specialsring.get() == "YESFEET":
+        useDialogue("um...")
+        useDialogue("i mean.... i need some money...")
+
+    #scene 3a
 
 
 
