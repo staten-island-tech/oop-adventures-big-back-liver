@@ -66,9 +66,15 @@ class scenebutton(Button):
     
 class dialogue(Label):
 
-    def __init__(self,  textx, masterx, fgcolor = "Grey", bgcolor = "Black", speed = 50):
+    def __init__(self,  textx, masterx, fgcolor = "Grey", bgcolor = "Black", speed = 50, portrait = "portrait/HappyHamster.jpg" ):
+
 
         super().__init__(master= masterx, wraplength= 600, fg = fgcolor, bg= bgcolor, font = ("Arial", 20))
+        
+        self.picter = Image.open(portrait)
+        self.picter = self.picter.resize([100,100])
+        tkinterconver = ImageTk.PhotoImage(self.picter)
+
         self.place(anchor= "s", relx = .5, rely = .9,  )
 
         for wig in TheBackground.winfo_children():
