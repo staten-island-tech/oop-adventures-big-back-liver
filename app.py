@@ -16,8 +16,10 @@ def notificationSFX():
     time.sleep(2)  
     base.update()
 
-def useDialogue(text, espeed = 50):
-    dialgoue = dialogue(masterx= TheBackground, textx= text, speed= espeed )
+def useDialogue(text, espeed = 50, file = "portrait/HamsterDefault.jpg"):
+    dialgoue = dialogue(masterx= TheBackground, textx= text, speed= espeed, portrait= file )
+
+
 base = Tk()
 base.geometry("900x900")
 base.resizable(False, True)
@@ -70,11 +72,18 @@ class dialogue(Label):
 
 
         super().__init__(master= masterx, wraplength= 600, fg = fgcolor, bg= bgcolor, font = ("Arial", 20))
-        
+        self.get
+        #portrait
         self.picter = Image.open(portrait)
         self.picter = self.picter.resize([100,100])
         tkinterconver = ImageTk.PhotoImage(self.picter)
+        self.portrait = Label(master = TheBackground, image= tkinterconver)
+        self.portrait.storage = tkinterconver
 
+        self.portrait.place(anchor= "s", relx = .3, rely = .9, )
+
+
+        #label
         self.place(anchor= "s", relx = .5, rely = .9,  )
 
         for wig in TheBackground.winfo_children():
