@@ -13,12 +13,14 @@ def notificationSFX():
     sfxdomer = pygame.mixer.Sound("audio file\DOMER.mp3")
     channel1 = pygame.mixer.Channel(1)
     channel1.play(sfxdomer)
+    base.update()
     time.sleep(2)  
- 
+    base.update()
 
+ 
 base = Tk()
 base.geometry("900x900")
-base.resizable(False, False)
+base.resizable(False, True)
 specialsring = StringVar()
 
 class backgound(Frame):
@@ -26,8 +28,9 @@ class backgound(Frame):
     def __init__(self, masterx = base, imagex = "backgroundbedroom.jpg" ):
         super().__init__(master= masterx)
         self.pack()
+        
 
-        self.picter = Image.open( "background\\" + imagex)
+        self.picter = Image.open( "background/" + imagex)
         self.picter = self.picter.resize([900,900])
         tkinterconver = ImageTk.PhotoImage(self.picter)
 
@@ -35,6 +38,7 @@ class backgound(Frame):
         self.label.storage = tkinterconver
         
         self.label.pack(expand= True, fill= "both")
+        masterx.update()
 
     def kys(self):
         self.destroy()
@@ -110,5 +114,10 @@ dialgoue2a = dialogue(masterx= TheBackground, textx= "What was that notification
 TheBackground.kys()
 TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN1.jpeg")
 notificationSFX()
-
+TheBackground.kys() 
+TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN2.png")
+base.update()
+time.sleep(2)
+base.update()
+dialgoue2a = dialogue(masterx= TheBackground, textx= ".....")
 base.mainloop()
