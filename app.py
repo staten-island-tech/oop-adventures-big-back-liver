@@ -133,7 +133,6 @@ if specialsring.get() == "Deskbutton":
     useDialogue("I should probably do a live stream. It's a quick way to get some... ")
     UseLaptop1 = scenebutton(identity= "UseLaptop", masterx = TheBackground, textx= "Use laptop", ifPressed= "backgroundlaptop.jpg", locx= .4, locy = .6 )
     LeaveDesk1 = UselessButton( masterx = TheBackground, textx= "Leave desk", locx= .5, locy = 0.9, message= "I should probably work..." )
-    #No. LeaveDesk1 = scenebutton(identity= "LeaveDesk(bedroom)", masterx = TheBackground, textx= "Leave desk", ifPressed= "backgroundbedroom.jpg", locx= .5, locy = 0.9 )
     
     base.wait_variable(specialsring)
     useDialogue( "Let's see what my followers are saying. Maybe they could give me some ideas.")
@@ -188,6 +187,17 @@ if specialsring.get() == "Deskbutton":
     #"""
     if specialsring.get() == "YESFEET":
         useDialogue("I better order some food now....")
+        TheBackground.kys() 
+        TheBackground = backgound(masterx= base, imagex= "UberEats.png")
+        useDialogue("Okay, i'ts going to deliver in 15 minutes.", espeed= 40 )
+        notificationSFX()
+        TheBackground.kys() 
+        TheBackground = backgound(masterx= base, imagex= "UberEats1.png")
+        useDialogue("I regret this.")
+        TheBackground.kys() 
+        TheBackground = backgound(masterx= base, imagex= "backgrounddesk.jpg")
+        UseLaptop2 = UselessButton(masterx = TheBackground, textx= "Use laptop", locx= .4, locy = .6, message= "no thanks....")
+
     #"""
 
 
