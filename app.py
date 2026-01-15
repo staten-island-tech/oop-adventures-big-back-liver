@@ -187,7 +187,7 @@ if specialsring.get() == "Deskbutton":
     #scene 3a
     #"""
     if specialsring.get() == "YESFEET":
-        useDialogue("I better order some food now.....")
+        useDialogue("I better order some food now....")
     #"""
 
 
