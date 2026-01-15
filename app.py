@@ -17,12 +17,12 @@ def notificationSFX():
     base.update()
 
 def useDialogue(text, espeed = 50, file = "portrait/HamsterDefault.jpg"):
-    dialgoue = dialogue(masterx= TheBackground, textx= text, speed= espeed, portrait= file )
+    dialgoue = dialogue(masterx= TheBackground, textx= text, speed= espeed, portraitfile= file )
 
 
 base = Tk()
 base.geometry("900x900")
-base.resizable(False, True)
+base.resizable(False, False)
 specialsring = StringVar()
 
 
@@ -43,6 +43,7 @@ class backgound(Frame):
 
     def kys(self):
         self.destroy()
+
 
 class scenebutton(Button):
 
@@ -68,21 +69,12 @@ class scenebutton(Button):
     
 class dialogue(Label):
 
-    def __init__(self,  textx, masterx, fgcolor = "Grey", bgcolor = "Black", speed = 50, portrait = "portrait/HappyHamster.jpg" ):
+    def __init__(self,  textx, masterx, fgcolor = "Grey", bgcolor = "Black", speed = 50, portraitfile = "portrait/HappyHamster.jpg" ):
 
 
         super().__init__(master= masterx, wraplength= 600, fg = fgcolor, bg= bgcolor, font = ("Arial", 20))
-        self.get
-        #portrait
-        self.picter = Image.open(portrait)
-        self.picter = self.picter.resize([100,100])
-        tkinterconver = ImageTk.PhotoImage(self.picter)
-        self.portrait = Label(master = TheBackground, image= tkinterconver)
-        self.portrait.storage = tkinterconver
-
-        self.portrait.place(anchor= "s", relx = .3, rely = .9, )
-
-
+        
+        
         #label
         self.place(anchor= "s", relx = .5, rely = .9,  )
 
@@ -90,7 +82,7 @@ class dialogue(Label):
             if wig.winfo_class() == "Button":
                 wig.config(state = 'disabled')
         TheBackground.update()
-        
+
         #hahahhaha i got this effect to  work 
         b =""
         for char in textx:
@@ -98,17 +90,21 @@ class dialogue(Label):
             self.update()
             b = b + char
             self.config(text= b)
-            
+
+        global button_pressedok    
         button_pressedok = StringVar()
         ok = Button(master= TheBackground, text= "Next", fg = "grey", bg = "black", command=lambda: button_pressedok.set(value="buttonpressedok"))
         ok.place(anchor="n", relx=.5, rely = .9)
-        #TheBackground.wait_variable(button_pressedok)
+
+        #pause
         base.wait_variable(button_pressedok)
         for wig in TheBackground.winfo_children():
             wig.config(state = 'normal')
+        
+        #returning
         TheBackground.update()
-        self.destroy()
         ok.destroy()
+        self.destroy()
         
 
 class UselessButton(Button):
@@ -185,13 +181,14 @@ if specialsring.get() == "Deskbutton":
         useDialogue("i feel unsafe...", espeed= 400)
 
     TheBackground.kys() 
-    TheBackground = backgound(masterx= base, imagex= "backgroundlaptop")
+    TheBackground = backgound(masterx= base, imagex= "backgroundlaptop.jpg")
     useDialogue("i hate my life.") #wrd
 
-
-
     #scene 3a
-
+    #"""
+    if specialsring.get() == "YESFEET":
+        useDialogue("I better order some food now....")
+    #"""
 
 
 
