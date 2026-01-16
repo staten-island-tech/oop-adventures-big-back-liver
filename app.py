@@ -194,6 +194,7 @@ if specialsring.get() == "Deskbutton":
         TheBackground.kys() 
         TheBackground = backgound(masterx= base, imagex= "UberEats1.png")
         useDialogue("I regret this.")
+        useDialogue("I regret being born.....")
         TheBackground.kys() 
         TheBackground = backgound(masterx= base, imagex= "backgrounddesk.jpg")
         UseLaptop2 = UselessButton(masterx = TheBackground, textx= "Use laptop", locx= .4, locy = .6, message= "no thanks....")
