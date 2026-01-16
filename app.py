@@ -198,6 +198,11 @@ if specialsring.get() == "Deskbutton":
         TheBackground.kys() 
         TheBackground = backgound(masterx= base, imagex= "backgrounddesk.jpg")
         UseLaptop2 = UselessButton(masterx = TheBackground, textx= "Use laptop", locx= .4, locy = .6, message= "no thanks....")
+        LeaveRoom2 = scenebutton(masterx= TheBackground, identity= "LeaveRoom", textx= "Leave Room", locx= .7, locy=.5, ifPressed= "backgroundhallway.jpg")
+
+        base.wait_variable(specialsring)
+        
+
 
     #"""
 

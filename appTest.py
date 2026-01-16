@@ -20,7 +20,7 @@ def notificationSFX():
  
 base = Tk()
 base.geometry("900x900")
-base.resizable(False, True)
+base.resizable(False, False)
 specialsring = StringVar()
 
 class backgound(Frame):
@@ -68,10 +68,18 @@ class scenebutton(Button):
     
 class dialogue(Label):
 
-    def __init__(self,  textx, masterx, fgcolor = "Grey", bgcolor = "Black"):
+    def __init__(self,  textx, masterx, fgcolor = "Grey", bgcolor = "Black", Portraitpath = "portrait/HamsterDefault.jpg"):
 
         super().__init__(master= masterx, wraplength= 600, fg = fgcolor, bg= bgcolor, font = ("Arial", 20))
         self.place(anchor= "s", relx = .5, rely = .9,  )
+
+        #portrait
+        self.picter = Image.open( Portraitpath)
+        self.picter = self.picter.resize([150,150])
+        tkinterconvert = ImageTk.PhotoImage(self.picter)
+        portrait = Label(master= TheBackground, image= tkinterconvert, border= 5)
+        portrait.place(anchor="sw", relx=0, rely =1)
+        self.update()
 
         #hahahhaha i got this effect to  work 
         b =""
@@ -85,6 +93,7 @@ class dialogue(Label):
         ok = Button(master= TheBackground, text= "Next", fg = "grey", bg = "black", command=lambda: button_pressedok.set(value="buttonpressedok"))
         ok.place(anchor="n", relx=.5, rely = .9)
         TheBackground.wait_variable(button_pressedok)
+        portrait.destroy()
         self.destroy()
         ok.destroy()
         
