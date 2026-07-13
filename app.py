@@ -1,7 +1,7 @@
 
 import tkinter
 from tkinter import *
-from PIL import Image, ImageTk
+from Pillow import Image, ImageTk
 import time
 
 import pygame
