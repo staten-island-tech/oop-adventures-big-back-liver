@@ -77,10 +77,11 @@ class dialogue(Label):
         
         #label
         self.place(anchor= "s", relx = .5, rely = .9,  )
-
+        """
         for wig in TheBackground.winfo_children():
             if wig.winfo_class() == "Button":
-                wig.config(state = 'disabled')
+                wig.config(state = 'disabled') 
+        """
         TheBackground.update()
 
         #hahahhaha i got this effect to  work 
@@ -97,10 +98,12 @@ class dialogue(Label):
         ok.place(anchor="n", relx=.5, rely = .9)
 
         #pause
+
         base.wait_variable(button_pressedok)
+        """
         for wig in TheBackground.winfo_children():
             wig.config(state = 'normal')
-        
+        """
         #returning
         TheBackground.update()
         ok.destroy()
