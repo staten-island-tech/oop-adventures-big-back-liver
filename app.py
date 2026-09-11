@@ -9,7 +9,7 @@ pygame.init()
 pygame.mixer.init()
 
 def notificationSFX():
-    sfxdomer = pygame.mixer.Sound("audio file\DOMER.mp3")
+    sfxdomer = pygame.mixer.Sound("audio file/DOMER.mp3")
     channel1 = pygame.mixer.Channel(1)
     channel1.play(sfxdomer)
     base.update()
