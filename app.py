@@ -1,6 +1,7 @@
 
 import tkinter
 from tkinter import *
+import Pillow
 from Pillow import Image, ImageTk
 import time
 
