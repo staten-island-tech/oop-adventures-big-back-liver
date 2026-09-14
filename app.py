@@ -1,7 +1,6 @@
 
 import tkinter
 from tkinter import *
-import PIL
 from PIL import Image, ImageTk
 import time
 
@@ -10,7 +9,7 @@ pygame.init()
 pygame.mixer.init()
 
 def notificationSFX():
-    sfxdomer = pygame.mixer.Sound("audio file/DOMER.mp3")
+    sfxdomer = pygame.mixer.Sound("audio file\DOMER.mp3")
     channel1 = pygame.mixer.Channel(1)
     channel1.play(sfxdomer)
     base.update()
@@ -24,7 +23,7 @@ def useDialogue(text, espeed = 50, file = "portrait/HamsterDefault.jpg"):
 base = Tk()
 base.geometry("900x900")
 base.resizable(False, False)
-specialsring = StringVar()
+specialsring = StringVar() #the identity of a button will change this
 
 
 class backgound(Frame):
@@ -42,8 +41,10 @@ class backgound(Frame):
         
         self.label.pack(expand= True, fill= "both")
 
+
     def kys(self):
         self.destroy()
+        
 
 
 class scenebutton(Button):
@@ -78,11 +79,9 @@ class dialogue(Label):
         
         #label
         self.place(anchor= "s", relx = .5, rely = .9,  )
-        """
         for wig in TheBackground.winfo_children():
             if wig.winfo_class() == "Button":
                 wig.config(state = 'disabled') 
-        """
         TheBackground.update()
 
         #hahahhaha i got this effect to  work 
@@ -101,10 +100,8 @@ class dialogue(Label):
         #pause
 
         base.wait_variable(button_pressedok)
-        """
         for wig in TheBackground.winfo_children():
             wig.config(state = 'normal')
-        """
         #returning
         TheBackground.update()
         ok.destroy()
@@ -128,7 +125,7 @@ class UselessButton(Button):
 TheBackground = backgound(masterx= base, imagex= "backgroundbedroom.jpg")
 Deskbutton = scenebutton(identity="Deskbutton", masterx= TheBackground, textx = "Go to Desk", ifPressed= "backgrounddesk.jpg", locx= 0.35, locy=0.5 )
 #LeaveRoom = scenebutton(identity="Leaveroom", masterx= location1, textx= "Leave room", ifPressed= "backgroundhallway.jpg", locx= .7, locy=.5)
-LeaveRoom = UselessButton(masterx= TheBackground, textx= "Leave room", locx= .7, locy=.5, message= "i dont want to go there.")
+LeaveRoom = UselessButton(masterx= TheBackground, textx= "Leave room", locx= .7, locy=.5, message= "lets check our laptop first...")
 base.wait_variable(specialsring)
 
 #scene 2a
@@ -187,7 +184,7 @@ if specialsring.get() == "Deskbutton":
     TheBackground = backgound(masterx= base, imagex= "backgroundlaptop.jpg")
     useDialogue("i hate my life.") #wrd
 
-    #scene 3a
+    #scene 3a path = Yes
     #"""
     if specialsring.get() == "YESFEET":
         useDialogue("I better order some food now....")
@@ -197,8 +194,8 @@ if specialsring.get() == "Deskbutton":
         notificationSFX()
         TheBackground.kys() 
         TheBackground = backgound(masterx= base, imagex= "UberEats1.png")
-        useDialogue("I regret this.")
-        useDialogue("I regret being born.....")
+        useDialogue("I regret this.", espeed=100)
+        useDialogue("I regret my whole life....")
         TheBackground.kys() 
         TheBackground = backgound(masterx= base, imagex= "backgrounddesk.jpg")
         UseLaptop2 = UselessButton(masterx = TheBackground, textx= "Use laptop", locx= .4, locy = .6, message= "no thanks....")
@@ -208,7 +205,31 @@ if specialsring.get() == "Deskbutton":
         
 
 
+    #scene 3b path = no
     #"""
+    if specialsring.get() == "fuhno":
+        useDialogue("That was so weird. I hope nothing bad happens.")
+        TheBackground.kys() 
+        TheBackground = backgound(masterx= base, imagex= "backgrounddesk.jpg")
+        UseLaptop2 = UselessButton(masterx = TheBackground, textx= "Use laptop", locx= .4, locy = .6, message= "no thanks...")
+        LeaveRoom2 = scenebutton(masterx= TheBackground, identity= "hallway", textx= "Leave Room", locx= .7, locy=.5, ifPressed= "backgroundhallway.jpg")
+        base.wait_variable(specialsring)
+
+        #Knocking sound (will add later)
+        
+        #allows user to explore:
+        explore = True
+        while explore:
+            #create rooms buttons here
+
+            #hallway
+            if specialsring == "hallway":
+                TheBackground.kys() 
+                TheBackground = backgound(masterx= base, imagex= "backgrounddesk.jpg")
+                
+
+
+
 
 
 
