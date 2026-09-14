@@ -1,7 +1,8 @@
 
 import tkinter
 from tkinter import *
-from Pillow import Image, ImageTk
+import PIL
+from PIL import Image, ImageTk
 import time
 
 import pygame
@@ -9,7 +10,7 @@ pygame.init()
 pygame.mixer.init()
 
 def notificationSFX():
-    sfxdomer = pygame.mixer.Sound("audio file\DOMER.mp3")
+    sfxdomer = pygame.mixer.Sound("audio file/DOMER.mp3")
     channel1 = pygame.mixer.Channel(1)
     channel1.play(sfxdomer)
     base.update()
