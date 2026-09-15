@@ -212,7 +212,7 @@ if specialsring.get() == "Deskbutton":
         TheBackground.kys() 
         TheBackground = backgound(masterx= base, imagex= "backgrounddesk.jpg")
         UseLaptop2 = UselessButton(masterx = TheBackground, textx= "Use laptop", locx= .4, locy = .6, message= "no thanks...")
-        LeaveRoom2 = scenebutton(masterx= TheBackground, identity= "hallway", textx= "Leave Room", locx= .7, locy=.5, ifPressed= "backgroundhallway.jpg")
+        LeaveRoom2 = scenebutton(masterx= TheBackground, identity= "LeaveRoom", textx= "Leave Room", locx= .7, locy=.5, ifPressed= "backgroundhallway.jpg")
         base.wait_variable(specialsring)
 
         #Knocking sound (will add later)
@@ -223,11 +223,12 @@ if specialsring.get() == "Deskbutton":
             #create rooms buttons here
 
             #hallway
-            if specialsring == "hallway":
+            if specialsring == "LeaveRoom":
                 TheBackground.kys() 
-                TheBackground = backgound(masterx= base, imagex= "backgrounddesk.jpg")
-                
-
+                TheBackground = backgound(masterx= base, imagex= "backgroundhallway.jpg")
+                ExitHall = scenebutton(masterx= TheBackground, identity= "ExitHall", textx= "Exit Hallway", locx= .4, locy=.4, ifPressed= "backgroundhallway.jpg")
+                Bathroom = scenebutton(masterx= TheBackground, identity= "Bathroom", textx= "Bathroom", locx= .55, locy=.6, ifPressed= "backgroundhallway.jpg")
+                base.wait_variable(specialsring)
 
 
 
