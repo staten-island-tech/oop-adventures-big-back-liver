@@ -2,10 +2,9 @@
 import tkinter
 from tkinter import *
 from PIL import Image, ImageTk
-
-import pygame
 import time
 
+import pygame
 pygame.init()
 pygame.mixer.init()
 
@@ -17,18 +16,21 @@ def notificationSFX():
     time.sleep(2)  
     base.update()
 
- 
+def useDialogue(text, espeed = 50, file = "portrait/HamsterDefault.jpg"):
+    dialgoue = dialogue(masterx= TheBackground, textx= text, speed= espeed, portraitfile= file )
+
+
 base = Tk()
 base.geometry("900x900")
 base.resizable(False, False)
-specialsring = StringVar()
+specialsring = StringVar() #the identity of a button will change this
+
 
 class backgound(Frame):
     
     def __init__(self, masterx = base, imagex = "backgroundbedroom.jpg" ):
         super().__init__(master= masterx)
         self.pack()
-        
 
         self.picter = Image.open( "background/" + imagex)
         self.picter = self.picter.resize([900,900])
@@ -38,15 +40,18 @@ class backgound(Frame):
         self.label.storage = tkinterconver
         
         self.label.pack(expand= True, fill= "both")
-        masterx.update()
+        self.lower()
+        base.update()
+
 
     def kys(self):
         self.destroy()
+        
 
 
 class scenebutton(Button):
 
-    def __init__(self, ifPressed, locx, locy, identity, masterx = base, textx = "Continue", fgcolor = "Grey", bgcolor = "Black" ):
+    def __init__(self, ifPressed, locx, locy, identity, masterx, textx = "Continue", fgcolor = "Grey", bgcolor = "Black" ):
         super().__init__(master= masterx, text = textx, width= 15, height= 2, fg= fgcolor, bg= bgcolor, command = self.switchscreen)
         self.masterx = masterx
         self.textx = textx
@@ -54,48 +59,58 @@ class scenebutton(Button):
         self.identity = identity      
         #if pressed is supposed to be an image path to the next scene or something idk
         self.place(anchor= "center", relx = locx, rely = locy )
+        self.lift()
         #loc is a float that hsdjfghgfrsjhhfrujfdhg
-    
+         
     def switchscreen(self):
-        self.master.destroy()
+        
         specialsring.set(self.identity)
+        print(specialsring)
+        print(self.identity)
 
         global TheBackground 
         TheBackground = backgound(masterx = base, imagex= self.ifPressed )
-        
+        self.master.destroy()
         #this automatically destroys the button too
 
     
 class dialogue(Label):
 
-    def __init__(self,  textx, masterx, fgcolor = "Grey", bgcolor = "Black", Portraitpath = "portrait/HamsterDefault.jpg"):
+    def __init__(self,  textx, masterx, fgcolor = "Grey", bgcolor = "Black", speed = 50, portraitfile = "portrait/HappyHamster.jpg" ):
+
 
         super().__init__(master= masterx, wraplength= 600, fg = fgcolor, bg= bgcolor, font = ("Arial", 20))
+        
+        
+        #label
         self.place(anchor= "s", relx = .5, rely = .9,  )
-
-        #portrait
-        self.picter = Image.open( Portraitpath)
-        self.picter = self.picter.resize([150,150])
-        tkinterconvert = ImageTk.PhotoImage(self.picter)
-        portrait = Label(master= TheBackground, image= tkinterconvert, border= 5)
-        portrait.place(anchor="sw", relx=0, rely =1)
-        self.update()
+        for wig in TheBackground.winfo_children():
+            if wig.winfo_class() == "Button":
+                wig.config(state = 'disabled') 
+        TheBackground.update()
 
         #hahahhaha i got this effect to  work 
         b =""
         for char in textx:
-            self.after(50)
+            self.after(ms=speed)
             self.update()
             b = b + char
             self.config(text= b)
-            
+
+        global button_pressedok    
         button_pressedok = StringVar()
         ok = Button(master= TheBackground, text= "Next", fg = "grey", bg = "black", command=lambda: button_pressedok.set(value="buttonpressedok"))
         ok.place(anchor="n", relx=.5, rely = .9)
-        TheBackground.wait_variable(button_pressedok)
-        portrait.destroy()
-        self.destroy()
+
+        #pause
+
+        base.wait_variable(button_pressedok)
+        for wig in TheBackground.winfo_children():
+            wig.config(state = 'normal')
+        #returning
+        TheBackground.update()
         ok.destroy()
+        self.destroy()
         
 
 class UselessButton(Button):
@@ -107,26 +122,39 @@ class UselessButton(Button):
         self.textx = textx
         self.message = message
         self.place(anchor= "center", relx = locx, rely = locy )
+         
 
     def Press(self):
         self.dialogue = dialogue(masterx=TheBackground, textx= self.message)
-#states from laptop accesss
-TheBackground = backgound(base, "backgroundlaptop.jpg")
-dialgoue2a = dialogue(masterx= TheBackground,textx= "Let's see what my followers are saying. Maybe they could give me some ideas.")
 
-useLaptop2 = scenebutton(identity= "Screen", masterx= TheBackground, textx= "Check Messages", ifPressed="backgroundlaptopScreen.jpg",  locx= .5, locy = .4)
-base.wait_variable(specialsring)
-base.update()
-TheBackground.update()
-notificationSFX()
-dialgoue2a = dialogue(masterx= TheBackground, textx= "What was that notification?" )
-TheBackground.kys()
-TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN1.jpeg")
-notificationSFX()
+
+#testing hallway
+
+TheBackground = backgound(masterx= base, imagex= "backgroundlaptop.jpg")
+useDialogue("i hate my life.")
+
+useDialogue("That was so weird. I hope nothing bad happens.")
 TheBackground.kys() 
-TheBackground = backgound(masterx= base, imagex= "backgroundlaptopScreenN2.png")
-base.update()
-time.sleep(2)
-base.update()
-dialgoue2a = dialogue(masterx= TheBackground, textx= ".....")
+TheBackground = backgound(masterx= base, imagex= "backgrounddesk.jpg")
+UseLaptop2 = UselessButton(masterx = TheBackground, textx= "Use laptop", locx= .4, locy = .6, message= "no thanks...")
+LeaveRoom2 = scenebutton(masterx= TheBackground, identity= "LeaveRoom", textx= "Leave Room", locx= .7, locy=.5, ifPressed= "backgroundhallway.jpg")
+base.wait_variable(specialsring)
+
+#Knocking sound (will add later)
+
+#allows user to explore:
+
+#create rooms buttons here
+
+#hallway
+print(specialsring)
+ExitHall = scenebutton(masterx= TheBackground, identity= "ExitHall", textx= "Exit Hallway", locx= .4, locy=.4, ifPressed= "backgroundhallway.jpg")
+Bathroom = scenebutton(masterx= TheBackground, identity= "Bathroom", textx= "Bathroom", locx= .55, locy=.6, ifPressed= "bathroom.png.jpg")
+if specialsring == "LeaveRoom":
+
+    ExitHall = scenebutton(masterx= TheBackground, identity= "ExitHall", textx= "Exit Hallway", locx= .4, locy=.4, ifPressed= "backgroundhallway.jpg")
+    Bathroom = scenebutton(masterx= TheBackground, identity= "Bathroom", textx= "Bathroom", locx= .55, locy=.6, ifPressed= "bathroom.png.jpg")
+
+    TheBackground.kys() 
+    TheBackground = backgound(masterx= base, imagex= "backgroundhallway.jpg")
 base.mainloop()
