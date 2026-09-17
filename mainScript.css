@@ -1,0 +1,17 @@
+html, body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  z-index: 0;
+
+  background-color: black; 
+  resize: none;
+  overflow: hidden;
+}
+.backgroundImage {
+    height: 100vh; 
+ 
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
